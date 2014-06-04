@@ -108,7 +108,9 @@ void ProgressivePNGImageFileReader::open(const char* filename)
             *image.get(),
             impl->m_tile_width,
             impl->m_tile_height,
-            image->properties().m_pixel_format));
+			foundation::PixelFormat::PixelFormatFloat));
+    //        image->properties().m_pixel_format));
+			
 }
 
 void ProgressivePNGImageFileReader::close()

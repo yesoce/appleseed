@@ -107,6 +107,8 @@ set (foundation_image_sources
     foundation/image/pixel.h
     foundation/image/pngimagefilereader.cpp
     foundation/image/pngimagefilereader.h
+	foundation/image/jpgimagefilereader.cpp
+    foundation/image/jpgimagefilereader.h
     foundation/image/pngimagefilewriter.cpp
     foundation/image/pngimagefilewriter.h
     foundation/image/progressiveexrimagefilereader.cpp
@@ -115,6 +117,8 @@ set (foundation_image_sources
     foundation/image/progressiveexrimagefilewriter.h
     foundation/image/progressivepngimagefilereader.cpp
     foundation/image/progressivepngimagefilereader.h
+	foundation/image/progressivejpgimagefilereader.cpp
+    foundation/image/progressivejpgimagefilereader.h
     foundation/image/spectrum.h
     foundation/image/tile.cpp
     foundation/image/tile.h

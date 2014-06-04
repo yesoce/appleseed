@@ -165,8 +165,27 @@ class Pixel
         const size_t        src_channels,   // number of source channels
         const size_t*       shuffle_table); // channel shuffling table
 
+private:
+	static double voltage_to_intensity_srgb( double val );
+	static float voltage_to_intensity_srgb( float val );
+
 };
 
+inline double Pixel::voltage_to_intensity_srgb( double val )
+{
+	if( val <= 0.04045 ) {
+		return val / 12.92;
+	}
+	return pow( ( val + 0.055 ) / 1.055, 2.4f );
+}
+
+inline float Pixel::voltage_to_intensity_srgb( float val )
+{
+	if( val <= 0.04045f ) {
+		return val / 12.92f;
+	}
+	return pow( ( val + 0.055f ) / 1.055f, 2.4f );
+}
 
 //
 // Pixel class implementation.
@@ -252,7 +271,7 @@ inline void Pixel::convert_to_format<uint8>(
             float* typed_dest = reinterpret_cast<float*>(dest);
             for (const uint8* it = src_begin; it < src_end; it += src_stride)
             {
-                *typed_dest = static_cast<float>(*it) * (1.0f / 255);
+                *typed_dest = voltage_to_intensity_srgb(static_cast<float>(*it) * (1.0f / 255));
                 typed_dest += dest_stride;
             }
         }

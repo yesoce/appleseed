@@ -229,7 +229,7 @@ namespace
 
             value = reflectance ;
             value *= static_cast<float>(C1 + (abs(cos_phi_diff) * C2 * tan(beta)) + (1 - abs(cos_phi_diff)) * C3);
-            value += square(reflectance) * static_cast<float>(0.17 * cos_in * (sigma2 / (sigma2 + 0.13)) *
+            value += (reflectance * reflectance) * static_cast<float>(0.17 * cos_in * (sigma2 / (sigma2 + 0.13)) *
                                                              (1 - cos_phi_diff * square(2 * beta * RcpPi)));
             assert(min_value(value) >= 0.0 );
         }

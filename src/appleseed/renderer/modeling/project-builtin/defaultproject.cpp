@@ -80,7 +80,7 @@ auto_release_ptr<Project> DefaultProjectFactory::create()
 
     {
         // Create a pinhole camera.
-        // Film dimensions are 0.980 in × 0.735 in (24.892 mm x 18.669 mm).
+        // Film dimensions are 0.980 in ?0.735 in (24.892 mm x 18.669 mm).
         // Reference: http://en.wikipedia.org/wiki/Aspect_ratio_(image).
         ParamArray params;
         params.insert("film_dimensions", "0.024892 0.018669");

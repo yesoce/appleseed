@@ -236,7 +236,11 @@ struct BenchmarkingThreadContext::Impl
 
     ~Impl()
     {
+#if _WIN64
         SetThreadAffinityMask(GetCurrentThread(), m_thread_affinity_mask);
+#else
+		SetThreadAffinityMask(GetCurrentThread(), (DWORD_PTR)m_thread_affinity_mask);
+#endif
     }
 };
 

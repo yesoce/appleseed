@@ -34,6 +34,7 @@
 #include "foundation/core/exceptions/exceptionunsupportedfileformat.h"
 #include "foundation/image/progressiveexrimagefilereader.h"
 #include "foundation/image/progressivepngimagefilereader.h"
+#include "foundation/image/progressivejpgimagefilereader.h"
 #include "foundation/utility/string.h"
 
 // boost headers.
@@ -132,6 +133,17 @@ void GenericProgressiveImageFileReader::open(const char* filename)
                 : new ProgressivePNGImageFileReader(
                       impl->m_logger));
     }
+	else if (extension == ".jpg")
+	{
+		impl->m_reader.reset(
+			impl->m_has_default_tile_size
+			? new ProgressiveJPGImageFileReader(
+			impl->m_logger,
+			impl->m_default_tile_width,
+			impl->m_default_tile_height)
+			: new ProgressiveJPGImageFileReader(
+			impl->m_logger));
+	}
     else
     {
         throw ExceptionUnsupportedFileFormat(filename);

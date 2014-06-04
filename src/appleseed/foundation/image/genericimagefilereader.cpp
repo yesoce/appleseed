@@ -34,6 +34,7 @@
 #include "foundation/core/exceptions/exceptionunsupportedfileformat.h"
 #include "foundation/image/exrimagefilereader.h"
 #include "foundation/image/pngimagefilereader.h"
+#include "foundation/image/jpgimagefilereader.h"
 #include "foundation/utility/string.h"
 
 // boost headers.
@@ -66,6 +67,11 @@ Image* GenericImageFileReader::read(
         PNGImageFileReader reader;
         return reader.read(filename, image_attributes);
     }
+	else if (extension == ".jpg")
+	{
+		JPGImageFileReader reader;
+		return reader.read(filename, image_attributes);
+	}
     else
     {
         throw ExceptionUnsupportedFileFormat(filename);

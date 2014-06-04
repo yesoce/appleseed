@@ -375,12 +375,16 @@ template <>
 inline uint64 int_log2(const uint64 x)
 {
     assert(x > 0);
-
-    unsigned long index;
-    _BitScanReverse64(&index, x);
+	unsigned long index;
+#ifdef _WIN64
+	_BitScanReverse64(&index, x);
+#else
+	_BitScanReverse(&index, static_cast<unsigned long>(x));
+#endif // _WIN64
 
     return static_cast<uint64>(index);
 }
+
 
 // gcc.
 #elif defined __GNUC__
